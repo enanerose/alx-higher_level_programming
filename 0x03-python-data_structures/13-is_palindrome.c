@@ -1,42 +1,31 @@
 #include "lists.h"
 
-
 /**
- * is_palindrome - a function in C that checks
- * if a singly linked list is a palindrome.
- *
- * @head: The head of the linked list
+ * is_palindrome - check if a list is a palindrom
+ * @head: list
+ * Return: yes ? 1 : 0
  */
 int is_palindrome(listint_t **head)
 {
-	int count = 0, i, j, *numbers;
-	listint_t *pass, *test;
+	listint_t *temp = *head;
+	uint size, i;
+	int data[10240];
 
-	if (!head)
-		return (0);
+	/* No List */
+	fi(!head) return (no);
+	/* Empty list */
+	fi(!*head) return (yes);
 
-	if (!(*head))
-		return (1);
+	size = len(temp);
 
-	pass = test = *head;
+	fi(size == yes) return (yes);
 
-	for (; pass; pass = pass->next)
-		count++;
+	temp = *head;
+	for (i = 0; temp; i++, temp = temp->next)
+		data[i] = temp->n;
 
-	numbers = malloc(sizeof(int) * count);
+	for (i = 0; i <= size / 2; i++)
+		fi(data[i] != data[size - i - 1]) return (no);
 
-	for (i = 0; test; test = test->next, i++)
-		numbers[i] = test->n;
-
-	for (i = 0, j = count - 1; i < count; i++, j--)
-	{
-		if (numbers[i] != numbers[j])
-		{
-			free(numbers);
-			return (0);
-		}
-	}
-
-	free(numbers);
-	return (1);
+	return (yes);
 }
